@@ -60,6 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx release-it --ci --increment ${{ inputs.bump }}
+        shell: bash
 
       - name: Download published npm tarball
         id: download_tarball
@@ -81,6 +82,7 @@ jobs:
           npm view "$PKG@$VER" version --silent >/dev/null 2>&1 || true
           TARBALL=$(npm pack "$PKG@$VER" --silent)
           echo "TARBALL=$TARBALL" >> $GITHUB_ENV
+        shell: bash
 
       - name: Upload npm tarball to GitHub Release assets
         id: upload_tarball
@@ -89,6 +91,7 @@ jobs:
         run: |
           TAG=v$(node -p "require('./package.json').version")
           gh release upload "$TAG" "$TARBALL" --clobber
+        shell: bash
 
       # Benchmark results are no longer appended to the GitHub release notes to keep
       # the release notes focused on the current version description only.
