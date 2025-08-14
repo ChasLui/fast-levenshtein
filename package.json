@@ -1,5 +1,5 @@
 {
-  "name": "fast-levenshtein",
+  "name": "@ChasLui/fast-levenshtein",
   "version": "1.0.0",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
   "main": "dist/index.cjs",
