@@ -89,23 +89,5 @@ jobs:
           TAG=v$(node -p "require('./package.json').version")
           gh release upload "$TAG" "$TARBALL" --clobber
 
-      - name: Append benchmark to GitHub release notes
-        if: ${{ success() && steps.download_tarball.outcome == 'success' && steps.upload_tarball.outcome == 'success' }}
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require('fs');
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const version = JSON.parse(fs.readFileSync('package.json', 'utf8')).version;
-            const tag = `v${version}`;
-
-            let bench = fs.readFileSync('benchmark-output.txt', 'utf8');
-            if (bench.length > 60000) {
-              bench = bench.slice(0, 60000) + '\n...truncated...';
-            }
-
-            const release = await github.rest.repos.getReleaseByTag({ owner, repo, tag });
-            const body = (release.data.body || '') + `\n\n### Benchmark\n\`\`\`\n${bench}\n\`\`\``;
-            await github.rest.repos.updateRelease({ owner, repo, release_id: release.data.id, body });
+      # Benchmark results are no longer appended to the GitHub release notes to keep
+      # the release notes focused on the current version description only.

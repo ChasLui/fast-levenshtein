@@ -69,7 +69,8 @@
       "tag": "latest"
     },
     "github": {
-      "release": true
+      "release": true,
+      "releaseName": "v${version}"
     },
     "hooks": {
       "before:init": [
