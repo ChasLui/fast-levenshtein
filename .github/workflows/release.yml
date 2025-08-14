@@ -2,6 +2,16 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      bump:
+        description: "Semver bump type"
+        type: choice
+        required: false
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
 
 permissions:
   contents: write
@@ -49,7 +59,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx release-it --ci
+        run: npx release-it --ci --increment ${{ inputs.bump }}
+
+      - name: Download published npm tarball
+        run: |
+          PKG=$(node -p "require('./package.json').name")
+          VER=$(node -p "require('./package.json').version")
+          TARBALL=$(npm pack "$PKG@$VER" --silent)
+          echo "TARBALL=$TARBALL" >> $GITHUB_ENV
+
+      - name: Upload npm tarball to GitHub Release assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=v$(node -p "require('./package.json').version")
+          gh release upload "$TAG" "$TARBALL" --clobber
 
       - name: Append benchmark to GitHub release notes
         uses: actions/github-script@v7
