@@ -16,7 +16,10 @@ A Javascript implementation of the [Levenshtein algorithm](http://en.wikipedia.o
 ## Installation
 
 ```bash
+# From npm (recommended)
 npm install @chaslui1/fast-levenshtein
+
+# For GitHub Packages, see the section below
 ```
 
 **CDN**
@@ -31,7 +34,7 @@ You can also load from a CDN (minified IIFE build, global name `FastLevenshtein`
 **Default usage (Node.js)**
 
 ```javascript
-// CommonJS
+// CommonJS (npm)
 const levenshtein = require('@chaslui1/fast-levenshtein').default;
 console.log(levenshtein.get('back', 'book'));   // 2
 console.log(levenshtein.get('我愛你', '我叫你'));   // 1
@@ -52,7 +55,25 @@ console.log(levenshtein.get('我愛你', '我叫你'));   // 1
   console.log(d1, d2);
   // If you prefer unpkg:
   // <script src="https://unpkg.com/@chaslui1/fast-levenshtein/dist/fast-levenshtein.global.js"></script>
+  // Note: CDN availability depends on publishing to npmjs.
+  
+  // Optional: ESM via CDN loaders may vary by toolchain.
 </script>
+```
+
+### Install from GitHub Packages
+
+If installing from GitHub Packages (instead of npmjs), configure your project's `.npmrc`:
+
+```ini
+@chaslui:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+```
+
+Then install:
+
+```bash
+npm install @chaslui/fast-levenshtein
 ```
 
 **Locale-sensitive string comparisons**
@@ -60,7 +81,7 @@ console.log(levenshtein.get('我愛你', '我叫你'));   // 1
 It supports using [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator) for locale-sensitive  string comparisons:
 
 ```javascript
-// CommonJS
+// CommonJS (npm)
 const levenshtein = require('@chaslui1/fast-levenshtein').default;
 levenshtein.get('mikailovitch', 'Mikhaïlovitch', { useCollator: true });
 // 1

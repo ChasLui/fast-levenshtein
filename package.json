@@ -1,5 +1,5 @@
 {
-  "name": "@chaslui1/fast-levenshtein",
+  "name": "@chaslui/fast-levenshtein",
   "version": "1.0.5",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
   "main": "dist/fast-levenshtein.cjs",
@@ -15,7 +15,8 @@
   "unpkg": "dist/fast-levenshtein.global.js",
   "jsdelivr": "dist/fast-levenshtein.global.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "files": [
     "dist",
