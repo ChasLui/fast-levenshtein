@@ -1,6 +1,6 @@
 {
   "name": "ts-levenshtein",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
   "main": "dist/ts-levenshtein.cjs",
   "module": "dist/ts-levenshtein.mjs",
@@ -70,8 +70,8 @@
     },
     "github": {
       "release": true,
-        "releaseName": "v${version}",
-        "releaseNotes": "${changelog}"
+      "releaseName": "v${version}",
+      "releaseNotes": "${changelog}"
     },
     "hooks": {
       "before:init": [
