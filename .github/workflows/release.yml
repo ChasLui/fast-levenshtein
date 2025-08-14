@@ -15,7 +15,6 @@ on:
 
 permissions:
   contents: write
-  packages: write
 
 jobs:
   release:
@@ -61,36 +60,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx release-it --ci --increment ${{ inputs.bump }}
-
-      - name: Publish to GitHub Packages (npm)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          OWNER=${{ github.repository_owner }}
-          OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
-          PKG=$(node -p "require('./package.json').name")
-          VER=$(node -p "require('./package.json').version")
-
-          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
-          echo "@${OWNER}:registry=https://npm.pkg.github.com" >> ~/.npmrc
-
-          SCOPE="${PKG%%/*}"
-          SCOPE_NOAT=$(echo "$SCOPE" | sed 's/^@//')
-          SCOPE_LC=$(echo "$SCOPE_NOAT" | tr '[:upper:]' '[:lower:]')
-
-          if [ "$SCOPE_LC" != "$(echo "$OWNER_LC" | tr '[:upper:]' '[:lower:]')" ]; then
-            echo "Package scope $SCOPE does not match repository owner @$OWNER. Skipping GitHub Packages publish."
-            exit 0
-          fi
-
-          if npm view "$PKG@$VER" version --registry https://npm.pkg.github.com --silent >/dev/null 2>&1; then
-            echo "$PKG@$VER already exists on GitHub Packages. Skipping publish."
-            exit 0
-          fi
-
-          echo "Publishing $PKG@$VER to GitHub Packages..."
-          npm publish --registry https://npm.pkg.github.com
 
       - name: Download published npm tarball
         id: download_tarball

@@ -16,10 +16,7 @@ A Javascript implementation of the [Levenshtein algorithm](http://en.wikipedia.o
 ## Installation
 
 ```bash
-# From npm (recommended)
 npm install @chaslui1/fast-levenshtein
-
-# For GitHub Packages, see the section below
 ```
 
 **CDN**
@@ -59,21 +56,6 @@ console.log(levenshtein.get('我愛你', '我叫你'));   // 1
   
   // Optional: ESM via CDN loaders may vary by toolchain.
 </script>
-```
-
-### Install from GitHub Packages
-
-If installing from GitHub Packages (instead of npmjs), configure your project's `.npmrc`:
-
-```ini
-@chaslui:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
-```
-
-Then install:
-
-```bash
-npm install @chaslui/fast-levenshtein
 ```
 
 **Locale-sensitive string comparisons**
