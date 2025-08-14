@@ -107,7 +107,7 @@ Results vary by machine/Node version; expect competitive performance while keepi
 
 ## Contributing
 
-If you wish to submit a pull request please update and/or create new tests for any changes you make and ensure the grunt build passes.
+If you wish to submit a pull request, please update and/or create new tests for any changes you make and ensure the build and tests pass locally (`npm run build`, `npm test`).
 
 See [CONTRIBUTING.md](https://github.com/chaslui/fast-levenshtein/blob/master/CONTRIBUTING.md) for details.
 
