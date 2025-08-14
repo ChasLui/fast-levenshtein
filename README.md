@@ -1,9 +1,9 @@
 # fast-levenshtein - Levenshtein algorithm in Javascript
 
 [![CI](https://github.com/ChasLui/fast-levenshtein/actions/workflows/ci.yml/badge.svg)](https://github.com/ChasLui/fast-levenshtein/actions/workflows/ci.yml)
-[![NPM module](https://badge.fury.io/js/fast-levenshtein.png)](https://badge.fury.io/js/fast-levenshtein)
-[![NPM downloads](https://img.shields.io/npm/dm/fast-levenshtein.svg?maxAge=2592000)](https://www.npmjs.com/package/fast-levenshtein)
-[![Follow on Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow&maxAge=2592000)](https://twitter.com/hiddentao)
+[![npm version](https://img.shields.io/npm/v/%40chaslui1%2Ffast-levenshtein.svg)](https://www.npmjs.com/package/@chaslui1/fast-levenshtein)
+[![npm downloads](https://img.shields.io/npm/dm/%40chaslui1%2Ffast-levenshtein.svg)](https://www.npmjs.com/package/@chaslui1/fast-levenshtein)
+[![Follow on Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow&maxAge=2592000)](https://twitter.com/chaslui1)
 
 A Javascript implementation of the [Levenshtein algorithm](http://en.wikipedia.org/wiki/Levenshtein_distance) with locale-specific collator support. The core is an internal Myers bit‑parallel implementation (no external runtime dependency), with small‑string DP fast path and typed‑array buffer reuse.
 
