@@ -1,6 +1,6 @@
 {
   "name": "@chaslui1/fast-levenshtein",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
   "main": "dist/fast-levenshtein.cjs",
   "module": "dist/fast-levenshtein.mjs",
