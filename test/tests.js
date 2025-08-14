@@ -2,7 +2,7 @@ const { test } = require("node:test");
 var _ = require("lodash"),
   chai = require("chai"),
   fs = require("fs"),
-  _lev = require("../dist/index.cjs");
+  _lev = require("../dist/fast-levenshtein.cjs");
 
 var levenshtein = _lev && _lev.default ? _lev.default : _lev;
 

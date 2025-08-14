@@ -31,12 +31,12 @@ const stringTwoCharCodes: number[] = [];
 
 // Myers bit-parallel implementation (fast non-collator path)
 const peq = new Uint32Array(0x10000);
-let phcCache = new Int32Array(0);
-let mhcCache = new Int32Array(0);
-let codeACache = new Uint16Array(0);
-let codeBCache = new Uint16Array(0);
-let dpRowCacheA = new Uint16Array(0);
-let dpRowCacheB = new Uint16Array(0);
+let phcCache: Int32Array<ArrayBufferLike> = new Int32Array(0);
+let mhcCache: Int32Array<ArrayBufferLike> = new Int32Array(0);
+let codeACache: Uint16Array<ArrayBufferLike> = new Uint16Array(0);
+let codeBCache: Uint16Array<ArrayBufferLike> = new Uint16Array(0);
+let dpRowCacheA: Uint16Array<ArrayBufferLike> = new Uint16Array(0);
+let dpRowCacheB: Uint16Array<ArrayBufferLike> = new Uint16Array(0);
 
 // Fixed-length buffer helpers to reduce reallocations (power-of-two growth)
 const nextPowerOfTwo = (n: number): number => {
@@ -49,12 +49,18 @@ const nextPowerOfTwo = (n: number): number => {
   return v + 1;
 };
 
-const ensureI32Capacity = (buf: Int32Array, needed: number): Int32Array => {
+const ensureI32Capacity = (
+  buf: Int32Array<ArrayBufferLike>,
+  needed: number
+): Int32Array<ArrayBufferLike> => {
   if (buf.length >= needed) return buf;
   return new Int32Array(nextPowerOfTwo(needed));
 };
 
-const ensureU16Capacity = (buf: Uint16Array, needed: number): Uint16Array => {
+const ensureU16Capacity = (
+  buf: Uint16Array<ArrayBufferLike>,
+  needed: number
+): Uint16Array<ArrayBufferLike> => {
   if (buf.length >= needed) return buf;
   return new Uint16Array(nextPowerOfTwo(needed));
 };
@@ -62,7 +68,10 @@ const ensureU16Capacity = (buf: Uint16Array, needed: number): Uint16Array => {
 const prepareCharCodes = (
   a: string,
   b: string
-): { aCodes: Uint16Array; bCodes: Uint16Array } => {
+): {
+  aCodes: Uint16Array<ArrayBufferLike>;
+  bCodes: Uint16Array<ArrayBufferLike>;
+} => {
   codeACache = ensureU16Capacity(codeACache, a.length);
   codeBCache = ensureU16Capacity(codeBCache, b.length);
   for (let i = 0; i < a.length; i++) codeACache[i] = a.charCodeAt(i);

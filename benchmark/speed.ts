@@ -1,4 +1,4 @@
-import levModule from "../dist/index.cjs";
+import levModule from "../dist/fast-levenshtein.cjs";
 
 const fastLevenshtein = (
   levModule && (levModule as any).default

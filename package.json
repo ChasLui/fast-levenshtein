@@ -2,20 +2,25 @@
   "name": "@chaslui1/fast-levenshtein",
   "version": "1.0.0",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
-  "main": "dist/index.cjs",
+  "main": "dist/fast-levenshtein.cjs",
+  "module": "dist/fast-levenshtein.mjs",
+  "types": "dist/fast-levenshtein.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "types": "./dist/fast-levenshtein.d.ts",
+      "import": "./dist/fast-levenshtein.mjs",
+      "require": "./dist/fast-levenshtein.cjs"
     }
   },
+  "unpkg": "dist/fast-levenshtein.global.js",
+  "jsdelivr": "dist/fast-levenshtein.global.js",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "unbuild",
-    "prepack": "unbuild",
+    "build": "tsup",
+    "prepack": "npm run build",
     "benchmark": "npm run build && tsx benchmark/run.ts",
     "test": "npm run build && node --test",
     "release": "release-it"
@@ -24,8 +29,8 @@
     "chai": "~1.5.0",
     "lodash": "^4.0.1",
     "release-it": "^19.0.4",
-    "tsx": "^4.19.1",
-    "unbuild": "^3.6.0"
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.1"
   },
   "repository": {
     "type": "git",

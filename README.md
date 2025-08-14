@@ -18,19 +18,41 @@ A Javascript implementation of the [Levenshtein algorithm](http://en.wikipedia.o
 ```bash
 npm install @chaslui1/fast-levenshtein
 ```
+
 **CDN**
 
-The latest version is now also always available at https://npm-cdn.com/pkg/fast-levenshtein/ 
+You can also load from a CDN (minified IIFE build, global name `FastLevenshtein`):
+
+- jsDelivr: `https://cdn.jsdelivr.net/npm/@chaslui1/fast-levenshtein/dist/fast-levenshtein.global.js`
+- unpkg: `https://unpkg.com/@chaslui1/fast-levenshtein/dist/fast-levenshtein.global.js`
 
 ## Examples
 
-**Default usage**
+**Default usage (Node.js)**
 
 ```javascript
-const levenshtein = require('@chaslui1/fast-levenshtein');
+// CommonJS
+const levenshtein = require('@chaslui1/fast-levenshtein').default;
+console.log(levenshtein.get('back', 'book'));   // 2
+console.log(levenshtein.get('我愛你', '我叫你'));   // 1
 
-const distance = levenshtein.get('back', 'book');   // 2
-const distance = levenshtein.get('我愛你', '我叫你');   // 1
+// or ESM
+// import levenshtein from '@chaslui1/fast-levenshtein'
+// console.log(levenshtein.get('back', 'book'))
+```
+
+**Browser via CDN**
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@chaslui1/fast-levenshtein/dist/fast-levenshtein.global.js"></script>
+<script>
+  // Global name: FastLevenshtein
+  const d1 = FastLevenshtein.default.get('kitten', 'sitting');
+  const d2 = FastLevenshtein.default.get('我愛你', '我叫你');
+  console.log(d1, d2);
+  // If you prefer unpkg:
+  // <script src="https://unpkg.com/@chaslui1/fast-levenshtein/dist/fast-levenshtein.global.js"></script>
+</script>
 ```
 
 **Locale-sensitive string comparisons**
@@ -38,11 +60,23 @@ const distance = levenshtein.get('我愛你', '我叫你');   // 1
 It supports using [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator) for locale-sensitive  string comparisons:
 
 ```javascript
-const levenshtein = require('@chaslui1/fast-levenshtein');
-
-levenshtein.get('mikailovitch', 'Mikhaïlovitch', { useCollator: true});
+// CommonJS
+const levenshtein = require('@chaslui1/fast-levenshtein').default;
+levenshtein.get('mikailovitch', 'Mikhaïlovitch', { useCollator: true });
 // 1
+
+// or ESM
+// import levenshtein from '@chaslui1/fast-levenshtein'
+// levenshtein.get('mikailovitch', 'Mikhaïlovitch', { useCollator: true })
 ```
+
+## Module formats and tooling
+
+- **CJS**: `dist/fast-levenshtein.cjs`
+- **ESM**: `dist/fast-levenshtein.mjs`
+- **CDN/IIFE (global)**: `dist/fast-levenshtein.global.js` (global `FastLevenshtein`)
+- **TypeScript types**: `dist/fast-levenshtein.d.ts` (exposed via `"types"` field)
+- **Source maps**: available for all builds
 
 ## Building and Testing
 
