@@ -6,14 +6,17 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x, 24.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.node-version }}
           cache: "npm"
           registry-url: "https://registry.npmjs.org"
 
@@ -23,8 +26,26 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: release-it
+      - name: Test
+        run: npm test --silent
+
+      - name: Benchmark
+        run: npm run benchmark | tee benchmark-output.txt
+
+      - name: Upload benchmark artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-output-node-${{ matrix.node-version }}
+          path: benchmark-output.txt
+          if-no-files-found: error
+
+      - name: release-it (publish using Node 22)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx release-it --ci
+        run: |
+          if [[ "${{ matrix.node-version }}" == "22.x" ]]; then
+            npx release-it --ci
+          else
+            echo "Skipping publish on Node ${{ matrix.node-version }}";
+          fi
