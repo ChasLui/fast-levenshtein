@@ -38,7 +38,7 @@ const distance = levenshtein.get('我愛你', '我叫你');   // 1
 It supports using [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator) for locale-sensitive  string comparisons:
 
 ```javascript
-const levenshtein = require('fast-levenshtein');
+const levenshtein = require('@chaslui1/fast-levenshtein');
 
 levenshtein.get('mikailovitch', 'Mikhaïlovitch', { useCollator: true});
 // 1
