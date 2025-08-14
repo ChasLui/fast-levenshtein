@@ -6,19 +6,21 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.x
           cache: "npm"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
@@ -35,17 +37,12 @@ jobs:
       - name: Upload benchmark artifact
         uses: actions/upload-artifact@v4
         with:
-          name: benchmark-output-node-${{ matrix.node-version }}
+          name: benchmark-output
           path: benchmark-output.txt
           if-no-files-found: error
 
-      - name: release-it (publish using Node 22)
+      - name: release-it (publish)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [[ "${{ matrix.node-version }}" == "22.x" ]]; then
-            npx release-it --ci
-          else
-            echo "Skipping publish on Node ${{ matrix.node-version }}";
-          fi
+        run: npx release-it --ci
