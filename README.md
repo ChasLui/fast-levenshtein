@@ -108,6 +108,21 @@ npm run benchmark
 
 Results vary by machine/Node version; expect competitive performance while keeping correctness and zero external deps.
 
+### Benchmark
+
+Sample run (lower is faster):
+
+Environment: Apple M4 MacBook, Node.js 22
+
+| Rank | Implementation            | Time (ms) | Relative to fastest | Status |
+|------|---------------------------|-----------:|---------------------:|--------|
+| 1    | ts-levenshtein            | 0.71       | 0.00%               | ok     |
+| 2    | levenshtein-edit-distance | 1.82       | 156.34%             | ok     |
+| 3    | levenshtein               | 2.57       | 261.97%             | ok     |
+| 4    | levenshtein-component     | 3.18       | 347.89%             | ok     |
+| 5    | levenshtein-deltas        | 4.04       | 469.01%             | ok     |
+| 6    | natural                   | 14.41      | 1929.58%            | ok     |
+
 ## Contributing
 
 If you wish to submit a pull request, please update and/or create new tests for any changes you make and ensure the build and tests pass locally (`npm run build`, `npm test`).
