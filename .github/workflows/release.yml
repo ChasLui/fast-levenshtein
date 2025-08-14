@@ -77,7 +77,8 @@ jobs:
             sleep 5
           done
           # One final check before packing
-          npm view "$PKG@$VER" version --silent >/dev/null 2>&1
+          # This extra check can occasionally flap due to npm replication. Don't fail the job here.
+          npm view "$PKG@$VER" version --silent >/dev/null 2>&1 || true
           TARBALL=$(npm pack "$PKG@$VER" --silent)
           echo "TARBALL=$TARBALL" >> $GITHUB_ENV
 
