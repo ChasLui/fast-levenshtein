@@ -21,7 +21,7 @@ npm install ts-levenshtein
 
 **CDN**
 
-You can also load from a CDN (minified IIFE build, global name `FastLevenshtein`):
+You can also load from a CDN (minified IIFE build, global name `TSLevenshtein`):
 
 - jsDelivr: `https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/ts-levenshtein.global.js`
 - unpkg: `https://unpkg.com/ts-levenshtein/dist/ts-levenshtein.global.js`
@@ -46,9 +46,9 @@ console.log(levenshtein.get("我愛你", "我叫你")); // 1
 ```html
 <script src="https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/ts-levenshtein.global.js"></script>
 <script>
-  // Global name: FastLevenshtein
-  const d1 = FastLevenshtein.default.get('kitten', 'sitting');
-  const d2 = FastLevenshtein.default.get('我愛你', '我叫你');
+  // Global name: TSLevenshtein
+  const d1 = TSLevenshtein.default.get('kitten', 'sitting');
+  const d2 = TSLevenshtein.default.get('我愛你', '我叫你');
   console.log(d1, d2);
   // If you prefer unpkg:
   // <script src="https://unpkg.com/ts-levenshtein/dist/ts-levenshtein.global.js"></script>
@@ -77,7 +77,7 @@ levenshtein.get("mikailovitch", "Mikhaïlovitch", { useCollator: true });
 
 - **CJS**: `dist/ts-levenshtein.cjs`
 - **ESM**: `dist/ts-levenshtein.mjs`
-- **CDN/IIFE (global)**: `dist/ts-levenshtein.global.js` (global `FastLevenshtein`)
+- **CDN/IIFE (global)**: `dist/ts-levenshtein.global.js` (global `TSLevenshtein`)
 - **TypeScript types**: `dist/ts-levenshtein.d.ts` (exposed via `"types"` field)
 - **Source maps**: available for all builds
 

@@ -5,7 +5,7 @@ export default defineConfig({
     "ts-levenshtein": "src/index.ts",
   },
   format: ["esm", "cjs", "iife"],
-  globalName: "FastLevenshtein",
+  globalName: "TSLevenshtein",
   outDir: "dist",
   sourcemap: true,
   minify: true,

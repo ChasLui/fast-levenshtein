@@ -3,7 +3,7 @@ import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
 
-const fastLevenshtein = (
+const TSLevenshtein = (
   levModule && (levModule as any).default
     ? (levModule as any).default
     : levModule
@@ -207,7 +207,7 @@ export default {
     {
       name: "ts-levenshtein",
       fn: function () {
-        loop(fastLevenshtein);
+        loop(TSLevenshtein);
       },
     },
   ],
