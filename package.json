@@ -29,13 +29,18 @@
     "release": "release-it"
   },
   "devDependencies": {
-    "chai": "~1.5.0",
-    "lodash": "^4.0.1",
-    "typescript": "^5.5.4",
     "@release-it/conventional-changelog": "^10.0.1",
+    "chai": "~1.5.0",
+    "levenshtein": "^1.0.5",
+    "levenshtein-component": "^0.0.1",
+    "levenshtein-deltas": "^0.1.4",
+    "levenshtein-edit-distance": "^3.0.1",
+    "lodash": "^4.0.1",
+    "natural": "^8.1.0",
     "release-it": "^19.0.4",
     "tsup": "^8.5.0",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.1",
+    "typescript": "^5.5.4"
   },
   "repository": {
     "type": "git",

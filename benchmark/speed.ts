@@ -1,4 +1,7 @@
 import levModule from "../dist/ts-levenshtein.cjs";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 
 const fastLevenshtein = (
   levModule && (levModule as any).default
@@ -21,7 +24,9 @@ function optional<T = any>(
 
 const levenshtein = optional<(a: string, b: string) => number>("levenshtein");
 const levenshteinEditDistance = optional<(a: string, b: string) => number>(
-  "levenshtein-edit-distance"
+  "levenshtein-edit-distance",
+  // package exports { levenshteinEditDistance }
+  (m) => (m && (m as any).levenshteinEditDistance) || null
 );
 const levenshteinComponent = optional<(a: string, b: string) => number>(
   "levenshtein-component"
