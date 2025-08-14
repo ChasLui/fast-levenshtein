@@ -16,7 +16,7 @@ A Javascript implementation of the [Levenshtein algorithm](http://en.wikipedia.o
 ## Installation
 
 ```bash
-npm install fast-levenshtein
+npm install @chaslui1/fast-levenshtein
 ```
 **CDN**
 
@@ -27,7 +27,7 @@ The latest version is now also always available at https://npm-cdn.com/pkg/fast-
 **Default usage**
 
 ```javascript
-const levenshtein = require('fast-levenshtein');
+const levenshtein = require('@chaslui1/fast-levenshtein');
 
 const distance = levenshtein.get('back', 'book');   // 2
 const distance = levenshtein.get('我愛你', '我叫你');   // 1
