@@ -1,19 +1,19 @@
 {
-  "name": "@chaslui1/fast-levenshtein",
-  "version": "1.0.5",
+  "name": "ts-levenshtein",
+  "version": "1.0.0",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
-  "main": "dist/fast-levenshtein.cjs",
-  "module": "dist/fast-levenshtein.mjs",
-  "types": "dist/fast-levenshtein.d.ts",
+  "main": "dist/ts-levenshtein.cjs",
+  "module": "dist/ts-levenshtein.mjs",
+  "types": "dist/ts-levenshtein.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/fast-levenshtein.d.ts",
-      "import": "./dist/fast-levenshtein.mjs",
-      "require": "./dist/fast-levenshtein.cjs"
+      "types": "./dist/ts-levenshtein.d.ts",
+      "import": "./dist/ts-levenshtein.mjs",
+      "require": "./dist/ts-levenshtein.cjs"
     }
   },
-  "unpkg": "dist/fast-levenshtein.global.js",
-  "jsdelivr": "dist/fast-levenshtein.global.js",
+  "unpkg": "dist/ts-levenshtein.global.js",
+  "jsdelivr": "dist/ts-levenshtein.global.js",
   "publishConfig": {
     "access": "public"
   },
@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ChasLui/fast-levenshtein.git"
+    "url": "https://github.com/ChasLui/ts-levenshtein.git"
   },
   "keywords": [
     "levenshtein",

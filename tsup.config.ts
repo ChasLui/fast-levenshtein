@@ -2,7 +2,7 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: {
-    "fast-levenshtein": "src/index.ts",
+    "ts-levenshtein": "src/index.ts",
   },
   format: ["esm", "cjs", "iife"],
   globalName: "FastLevenshtein",

@@ -2,7 +2,7 @@ const { test } = require("node:test");
 var _ = require("lodash"),
   chai = require("chai"),
   fs = require("fs"),
-  _lev = require("../dist/fast-levenshtein.cjs");
+  _lev = require("../dist/ts-levenshtein.cjs");
 
 var levenshtein = _lev && _lev.default ? _lev.default : _lev;
 
@@ -102,7 +102,7 @@ var createTests = function (str1, str2, expectedLength, options) {
     )
   );
 
-  // collation (see https://github.com/chaslui/fast-levenshtein/issues/7)
+  // collation (see https://github.com/chaslui/ts-levenshtein/issues/7)
   _.extend(
     tests,
     createTests("mikailovitch", "Mikhaïlovitch", 3, {

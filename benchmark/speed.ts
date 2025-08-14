@@ -1,4 +1,4 @@
-import levModule from "../dist/fast-levenshtein.cjs";
+import levModule from "../dist/ts-levenshtein.cjs";
 
 const fastLevenshtein = (
   levModule && (levModule as any).default
@@ -200,7 +200,7 @@ export default {
       },
     },
     {
-      name: "fast-levenshtein",
+      name: "ts-levenshtein",
       fn: function () {
         loop(fastLevenshtein);
       },
