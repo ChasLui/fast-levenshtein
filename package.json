@@ -70,7 +70,8 @@
     },
     "github": {
       "release": true,
-      "releaseName": "v${version}"
+        "releaseName": "v${version}",
+        "releaseNotes": "${changelog}"
     },
     "hooks": {
       "before:init": [
