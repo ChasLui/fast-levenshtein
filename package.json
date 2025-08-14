@@ -1,42 +1,53 @@
 {
   "name": "fast-levenshtein",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
-  "main": "levenshtein.js",
+  "main": "dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "files": [
-    "levenshtein.js"
+    "dist",
+    "src"
   ],
   "scripts": {
-    "build": "grunt build",
-    "prepublish": "npm run build",
-    "benchmark": "grunt benchmark",
-    "test": "mocha"
+    "build": "unbuild",
+    "prepack": "unbuild",
+    "benchmark": "npm run build && tsx benchmark/run.ts",
+    "test": "npm run build && node --test",
+    "release": "release-it"
   },
   "devDependencies": {
     "chai": "~1.5.0",
-    "grunt": "~0.4.1",
-    "grunt-benchmark": "~0.2.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-mocha-test": "~0.2.2",
-    "grunt-npm-install": "~0.1.0",
-    "load-grunt-tasks": "~0.6.0",
     "lodash": "^4.0.1",
-    "mocha": "~1.9.0"
+    "release-it": "^19.0.4",
+    "tsx": "^4.19.1",
+    "unbuild": "^3.6.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hiddentao/fast-levenshtein.git"
+    "url": "https://github.com/ChasLui/fast-levenshtein.git"
   },
   "keywords": [
     "levenshtein",
     "distance",
     "string"
   ],
-  "author": "Ramesh Nair <ram@hiddentao.com> (http://www.hiddentao.com/)",
+  "author": "ChasLui <chaslui@outlook.com>",
   "license": "MIT",
-  "dependencies": {
-    "fastest-levenshtein": "^1.0.7"
+  "release-it": {
+    "git": {
+      "tagName": "v${version}",
+      "commitMessage": "chore(release): v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    }
   }
 }
