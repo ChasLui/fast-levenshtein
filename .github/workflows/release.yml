@@ -45,14 +45,11 @@ jobs:
       - name: Test
         run: npm test --silent
 
-      - name: Benchmark
-        run: npm run benchmark | tee benchmark-output.txt
-
-      - name: Upload benchmark artifact
+      - name: Upload dist artifact
         uses: actions/upload-artifact@v4
         with:
-          name: benchmark-output
-          path: benchmark-output.txt
+          name: dist
+          path: dist/
           if-no-files-found: error
 
       - name: release-it (publish)
