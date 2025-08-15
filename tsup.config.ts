@@ -4,7 +4,7 @@ export default defineConfig({
   entry: {
     "ts-levenshtein": "src/index.ts",
   },
-  format: ["esm", "cjs", "iife"],
+  format: ["esm", "iife"],
   globalName: "TSLevenshtein",
   outDir: "dist",
   sourcemap: true,
@@ -14,8 +14,7 @@ export default defineConfig({
   target: "es2018",
   splitting: false,
   outExtension({ format }) {
-    if (format === "esm") return { js: ".mjs" };
-    if (format === "cjs") return { js: ".cjs" };
+    if (format === "esm") return { js: ".js" };
     if (format === "iife") return { js: ".global.js" };
     return { js: ".js" };
   },

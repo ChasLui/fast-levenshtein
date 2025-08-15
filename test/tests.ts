@@ -1,12 +1,10 @@
-const { test } = require("node:test");
-var _ = require("lodash"),
-  chai = require("chai"),
-  fs = require("fs"),
-  _lev = require("../dist/ts-levenshtein.cjs");
+import { test } from "node:test";
+import _ from "lodash";
+import chai from "chai";
+import fs from "node:fs";
+import levenshtein from "../dist/ts-levenshtein.js";
 
-var levenshtein = _lev && _lev.default ? _lev.default : _lev;
-
-var expect = chai.expect,
+const expect = chai.expect,
   assert = chai.assert;
 
 /**
@@ -137,8 +135,8 @@ var createTests = function (str1, str2, expectedLength, options) {
 
 // ------ Huge tests ----- //
 
-var text1 = fs.readFileSync(__dirname + "/text1.txt", "utf-8"),
-  text2 = fs.readFileSync(__dirname + "/text2.txt", "utf-8");
+const text1 = fs.readFileSync(new URL("./text1.txt", import.meta.url), "utf-8");
+const text2 = fs.readFileSync(new URL("./text2.txt", import.meta.url), "utf-8");
 
 test("Huge default", function () {
   var startTime = new Date().valueOf();

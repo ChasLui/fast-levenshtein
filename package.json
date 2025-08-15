@@ -2,14 +2,14 @@
   "name": "ts-levenshtein",
   "version": "1.0.3",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
-  "main": "dist/ts-levenshtein.cjs",
-  "module": "dist/ts-levenshtein.mjs",
+  "type": "module",
+  "main": "dist/ts-levenshtein.js",
+  "module": "dist/ts-levenshtein.js",
   "types": "dist/ts-levenshtein.d.ts",
   "exports": {
     ".": {
       "types": "./dist/ts-levenshtein.d.ts",
-      "import": "./dist/ts-levenshtein.mjs",
-      "require": "./dist/ts-levenshtein.cjs"
+      "import": "./dist/ts-levenshtein.js"
     }
   },
   "unpkg": "dist/ts-levenshtein.global.js",
@@ -25,7 +25,7 @@
     "build": "tsup",
     "prepack": "npm run build",
     "benchmark": "npm run build && tsx benchmark/run.ts",
-    "test": "npm run build && node --test",
+    "test": "npm run build && node --test --import tsx test/tests.ts",
     "release": "release-it"
   },
   "devDependencies": {
