@@ -1,4 +1,4 @@
-import levModule from "../dist/ts-levenshtein.js";
+import levModule from "../dist/index.mjs";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);

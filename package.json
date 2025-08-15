@@ -3,17 +3,19 @@
   "version": "1.0.5",
   "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
   "type": "module",
-  "main": "dist/ts-levenshtein.js",
-  "module": "dist/ts-levenshtein.js",
-  "types": "dist/ts-levenshtein.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/ts-levenshtein.d.ts",
-      "import": "./dist/ts-levenshtein.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
-  "unpkg": "dist/ts-levenshtein.global.js",
-  "jsdelivr": "dist/ts-levenshtein.global.js",
+  "unpkg": "dist/index.global.js",
+  "jsdelivr": "dist/index.global.js",
+  "cdn": "dist/index.global.js",
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +24,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "unbuild",
     "prepack": "npm run build",
     "benchmark": "npm run build && tsx benchmark/run.ts",
     "test": "npm run build && node --test --import tsx test/tests.ts",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.1",
+    "unbuild": "^3.3.1",
     "chai": "~1.5.0",
     "levenshtein": "^1.0.5",
     "levenshtein-component": "^0.0.1",
@@ -38,7 +41,6 @@
     "lodash": "^4.0.1",
     "natural": "^8.1.0",
     "release-it": "^19.0.4",
-    "tsup": "^8.5.0",
     "tsx": "^4.19.1",
     "typescript": "^5.5.4"
   },

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import _ from "lodash";
 import chai from "chai";
 import fs from "node:fs";
-import levenshtein from "../dist/ts-levenshtein.js";
+import levenshtein from "../dist/index.mjs";
 
 const expect = chai.expect,
   assert = chai.assert;

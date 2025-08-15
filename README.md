@@ -21,10 +21,13 @@ npm install ts-levenshtein
 
 **CDN**
 
-You can also load from a CDN (minified IIFE build, global name `TSLevenshtein`):
+You can load either the global IIFE build or ESM via esm.sh.
 
-- jsDelivr: `https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/ts-levenshtein.global.js`
-- unpkg: `https://unpkg.com/ts-levenshtein/dist/ts-levenshtein.global.js`
+- IIFE (global `TSLevenshtein`):
+  - jsDelivr: `https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/index.global.js`
+  - unpkg: `https://unpkg.com/ts-levenshtein/dist/index.global.js`
+- ESM (esm.sh):
+  - `https://esm.sh/ts-levenshtein`
 
 ## Examples
 
@@ -41,20 +44,32 @@ console.log(levenshtein.get("我愛你", "我叫你")); // 1
 // console.log(levenshtein.get('back', 'book'))
 ```
 
-**Browser via CDN**
+**Browser via CDN (IIFE)**
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/ts-levenshtein.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/index.global.js"></script>
 <script>
   // Global name: TSLevenshtein
   const d1 = TSLevenshtein.default.get('kitten', 'sitting');
   const d2 = TSLevenshtein.default.get('我愛你', '我叫你');
   console.log(d1, d2);
   // If you prefer unpkg:
-  // <script src="https://unpkg.com/ts-levenshtein/dist/ts-levenshtein.global.js"></script>
+  // <script src="https://unpkg.com/ts-levenshtein/dist/index.global.js"></script>
   // Note: CDN availability depends on publishing to npmjs.
 
   // Optional: ESM via CDN loaders may vary by toolchain.
+</script>
+```
+
+**Browser via CDN (ESM with esm.sh)**
+
+```html
+<script type="module">
+  import levenshtein from 'https://esm.sh/ts-levenshtein?bundle';
+  console.log(levenshtein.get('kitten', 'sitting'));
+  console.log(levenshtein.get('我愛你', '我叫你'));
+  // Tip: `?bundle` helps ensure a single file for browsers
+  // Deno: import levenshtein from 'https://esm.sh/ts-levenshtein'
 </script>
 ```
 
@@ -75,10 +90,11 @@ levenshtein.get("mikailovitch", "Mikhaïlovitch", { useCollator: true });
 
 ## Module formats and tooling
 
-- **CJS**: `dist/ts-levenshtein.cjs`
-- **ESM**: `dist/ts-levenshtein.mjs`
-- **CDN/IIFE (global)**: `dist/ts-levenshtein.global.js` (global `TSLevenshtein`)
-- **TypeScript types**: `dist/ts-levenshtein.d.ts` (exposed via `"types"` field)
+- **CJS**: `dist/index.cjs`
+- **ESM**: `dist/index.mjs`
+- **UMD**: `dist/index.umd.js`
+- **IIFE (global)**: `dist/index.global.js` (global `TSLevenshtein`)
+- **TypeScript types**: `dist/index.d.ts` (exposed via "types" field)
 - **Source maps**: available for all builds
 
 ## Building and Testing
