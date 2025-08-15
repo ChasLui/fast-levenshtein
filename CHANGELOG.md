@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.7 (2025-08-15)
+
+### Features
+
+* add Arabic and Chinese translations to README and examples; enhance online demo with multilingual support ([c63035d](https://github.com/ChasLui/ts-levenshtein/commit/c63035d6e15df7c6e1e83e4350c50e3e0da15d87))
+
 ## 1.0.6 (2025-08-15)
 
 ### Features
