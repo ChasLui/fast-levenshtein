@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ts-levenshtein playground</title>
-    <meta name="description" content="Online demo for ts-levenshtein via CDN (IIFE global)">
+    <title>ts-levenshtein 在线演示</title>
+    <meta name="description" content="ts-levenshtein 的在线演示（通过 CDN IIFE 全局版）">
     <style>
       :root {
         --bg: #0b1020;
@@ -139,11 +139,11 @@
   <body>
     <div class="container">
       <header>
-        <h1>ts-levenshtein online demo</h1>
+        <h1>ts-levenshtein 在线演示</h1>
         <div class="links">
           <a href="https://github.com/ChasLui/ts-levenshtein" target="_blank" rel="noreferrer">GitHub</a>
           &nbsp;·&nbsp;
-          <a href="./index.zh-CN.html">中文</a>
+          <a href="./index.html">English</a>
           &nbsp;·&nbsp;
           <a href="./index.ar-SA.html">العربية</a>
         </div>
@@ -152,40 +152,40 @@
       <div class="panel">
         <div class="grid">
           <div>
-            <label class="label" for="a">String A</label>
-            <textarea id="a" placeholder="e.g. kitten">kitten</textarea>
+            <label class="label" for="a">字符串 A</label>
+            <textarea id="a" placeholder="例如：我愛你">我愛你</textarea>
           </div>
           <div>
-            <label class="label" for="b">String B</label>
-            <textarea id="b" placeholder="e.g. sitting">sitting</textarea>
+            <label class="label" for="b">字符串 B</label>
+            <textarea id="b" placeholder="例如：我叫你">我叫你</textarea>
           </div>
         </div>
         <div class="row">
           <div class="controls">
             <label class="switch">
               <input id="useCollator" type="checkbox" />
-              <span>Use Intl.Collator (locale-sensitive)</span>
+              <span>使用 Intl.Collator（本地化敏感）</span>
             </label>
-            <span id="status" class="pill">Loading...</span>
+            <span id="status" class="pill">加载中...</span>
           </div>
           <div class="btns">
-            <button id="preset-en">Preset (EN)</button>
-            <button id="preset-zh">Preset (ZH)</button>
-            <button id="clear">Clear</button>
+            <button id="preset-en">预设（英文）</button>
+            <button id="preset-zh">预设（中文）</button>
+            <button id="clear">清空</button>
           </div>
         </div>
         <div class="result">
-          <div class="pill ok" id="distance">Distance: -</div>
-          <div class="pill" id="time">Time: - ms</div>
+          <div class="pill ok" id="distance">距离: -</div>
+          <div class="pill" id="time">耗时: - 毫秒</div>
         </div>
       </div>
 
       <footer>
-        Powered by ts-levenshtein via jsDelivr IIFE (global <code>TSLevenshtein</code>). ESM users can import from <code>https://esm.sh/ts-levenshtein</code>.
+        通过 jsDelivr IIFE（全局 <code>TSLevenshtein</code>）驱动。ESM 用户可从 <code>https://esm.sh/ts-levenshtein</code> 引入。
       </footer>
     </div>
 
-    <!-- IIFE global build from jsDelivr -->
+    <!-- IIFE 全局构建（来自 jsDelivr） -->
     <script src="https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/index.global.js"></script>
     <script>
       (function () {
@@ -205,8 +205,8 @@
           const t0 = performance.now();
           const d = get(a, b, useCollator ? { useCollator: true } : undefined);
           const t1 = performance.now();
-          elDistance.textContent = 'Distance: ' + d;
-          elTime.textContent = 'Time: ' + (t1 - t0).toFixed(2) + ' ms';
+          elDistance.textContent = '距离: ' + d;
+          elTime.textContent = '耗时: ' + (t1 - t0).toFixed(2) + ' 毫秒';
         }
 
         function setPreset(type) {
@@ -215,9 +215,9 @@
             elB.value = 'sitting';
             elUseCollator.checked = false;
           } else {
-            elA.value = 'mikailovitch';
-            elB.value = 'Mikhaïlovitch';
-            elUseCollator.checked = true;
+            elA.value = '我愛你';
+            elB.value = '我叫你';
+            elUseCollator.checked = false;
           }
           compute();
         }
@@ -232,8 +232,8 @@
           elUseCollator.addEventListener(evt, compute);
         });
 
-        // mark ready
-        elStatus.textContent = 'Ready';
+        // 标记就绪
+        elStatus.textContent = '就绪';
         elStatus.classList.add('ok');
         compute();
       })();

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ts-levenshtein - ساحة تجريب</title>
+    <meta name="description" content="عرض مباشر لـ ts-levenshtein عبر CDN (نسخة IIFE العالمية)">
+    <style>
+      :root {
+        --bg: #0b1020;
+        --panel: #121933;
+        --text: #e6e9ef;
+        --muted: #9aa4b2;
+        --accent: #7aa2f7;
+        --ok: #a6e3a1;
+      }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans Arabic, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+        background: radial-gradient(1200px 800px at 10% 10%, #111a3a 0%, var(--bg) 60%);
+        color: var(--text);
+      }
+      .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+      header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+      h1 { font-size: 22px; margin: 0; letter-spacing: 0.3px; }
+      .links a { color: var(--accent); text-decoration: none; }
+      .panel { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+      .label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.4px; }
+      textarea, input[type="text"] {
+        width: 100%; min-height: 120px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+        background: #0e1530; color: var(--text); padding: 12px 14px; font-size: 14px; outline: none; resize: vertical;
+      }
+      .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+      .controls { display: flex; align-items: center; gap: 14px; }
+      .switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; color: var(--muted); }
+      .btns { display: flex; gap: 10px; }
+      button { appearance: none; border: 1px solid rgba(255,255,255,0.12); background: #11193a; color: var(--text); padding: 10px 14px; border-radius: 10px; font-size: 13px; cursor: pointer; }
+      button:hover { background: #0f1736; }
+      .result { margin-top: 14px; font-size: 14px; display: flex; align-items: center; gap: 14px; }
+      .pill { padding: 6px 10px; border-radius: 9999px; background: rgba(122,162,247,0.15); border: 1px solid rgba(122,162,247,0.25); color: #c7d6ff; }
+      .ok { background: rgba(166,227,161,0.12); border-color: rgba(166,227,161,0.28); color: #d2ffd0; }
+      footer { margin-top: 20px; color: var(--muted); font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>ts-levenshtein - عرض مباشر</h1>
+        <div class="links">
+          <a href="https://github.com/ChasLui/ts-levenshtein" target="_blank" rel="noreferrer">GitHub</a>
+          &nbsp;·&nbsp;
+          <a href="./index.html">English</a>
+          &nbsp;·&nbsp;
+          <a href="./index.zh-CN.html">中文</a>
+        </div>
+      </header>
+
+      <div class="panel">
+        <div class="grid">
+          <div>
+            <label class="label" for="a">النص A</label>
+            <textarea id="a" placeholder="مثال: أحبك">أحبك</textarea>
+          </div>
+          <div>
+            <label class="label" for="b">النص B</label>
+            <textarea id="b" placeholder="مثال: أبك">أبك</textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="controls">
+            <label class="switch">
+              <input id="useCollator" type="checkbox" />
+              <span>استخدم Intl.Collator (حسّاس للمحلية)</span>
+            </label>
+            <span id="status" class="pill">جاري التحميل...</span>
+          </div>
+          <div class="btns">
+            <button id="preset-en">إعداد مسبق (EN)</button>
+            <button id="preset-ar">إعداد مسبق (AR)</button>
+            <button id="clear">مسح</button>
+          </div>
+        </div>
+        <div class="result">
+          <div class="pill ok" id="distance">المسافة: -</div>
+          <div class="pill" id="time">الوقت: - مللي ثانية</div>
+        </div>
+      </div>
+
+      <footer>
+        يعمل عبر jsDelivr IIFE (الاسم العالمي <code>TSLevenshtein</code>). يمكن لمستخدمي ESM الاستيراد من <code>https://esm.sh/ts-levenshtein</code>.
+      </footer>
+    </div>
+
+    <!-- نسخة IIFE العالمية من jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/ts-levenshtein/dist/index.global.js"></script>
+    <script>
+      (function () {
+        const elA = document.getElementById('a');
+        const elB = document.getElementById('b');
+        const elUseCollator = document.getElementById('useCollator');
+        const elDistance = document.getElementById('distance');
+        const elTime = document.getElementById('time');
+        const elStatus = document.getElementById('status');
+
+        function compute() {
+          if (!window.TSLevenshtein) return;
+          const a = elA.value || '';
+          const b = elB.value || '';
+          const useCollator = !!elUseCollator.checked;
+          const get = (window.TSLevenshtein.default ? window.TSLevenshtein.default : window.TSLevenshtein).get;
+          const t0 = performance.now();
+          const d = get(a, b, useCollator ? { useCollator: true } : undefined);
+          const t1 = performance.now();
+          elDistance.textContent = 'المسافة: ' + d;
+          elTime.textContent = 'الوقت: ' + (t1 - t0).toFixed(2) + ' مللي ثانية';
+        }
+
+        function setPreset(type) {
+          if (type === 'en') {
+            elA.value = 'kitten';
+            elB.value = 'sitting';
+            elUseCollator.checked = false;
+          } else {
+            elA.value = 'أحبك';
+            elB.value = 'أبك';
+            elUseCollator.checked = false;
+          }
+          compute();
+        }
+
+        document.getElementById('preset-en').addEventListener('click', function () { setPreset('en'); });
+        document.getElementById('preset-ar').addEventListener('click', function () { setPreset('ar'); });
+        document.getElementById('clear').addEventListener('click', function () { elA.value=''; elB.value=''; compute(); });
+
+        ['input', 'change'].forEach(evt => {
+          elA.addEventListener(evt, compute);
+          elB.addEventListener(evt, compute);
+          elUseCollator.addEventListener(evt, compute);
+        });
+
+        // جاهز
+        elStatus.textContent = 'جاهز';
+        elStatus.classList.add('ok');
+        compute();
+      })();
+    </script>
+  </body>
+  </html>
+
+
